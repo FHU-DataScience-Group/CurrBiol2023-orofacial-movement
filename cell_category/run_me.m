@@ -1,0 +1,10 @@
+clear
+
+addpath 'fun'
+
+Options;
+
+code1_Import_sorted_data
+code2_Extract_Trials_Integrate_data
+code3_Classify_Trials_by_Whisker
+code4_categorize_cells
