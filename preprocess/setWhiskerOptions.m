@@ -6,78 +6,34 @@ function options = setWhiskerOptions(varargin)
 % [Format]
 %   options = setWhiskerOptions(Name,value,...)
 %
+%
 % [Inputs]
 %   Specify pairs of [Name] and [value], where [Name] is the name of the
 %   parameter and [value] is the corresponding value.
 %   The default value of each parameter is as follows:
 %
-%    - 'DATA_DIR' (default: '../rawdata')
-%       to specify the folder in which the raw data are stored
+%    - 'DATA_DIR' (default: '~/rawdata')
+%       to change the folder in which the raw data are stored
 %
-%    - 'WORK_DIR' (デフォルト値: '../work')
-
-%setWhiskerOptions - Set the options for the analysis
+%    - 'WORK_DIR' (デフォルト値: '~/processed_data')
+%       to change the folder in which you want to store the processed
+%       data.
 %
-% データ解析用オプションを指定した値に変更する
+%　　- 'FIG_DIR' (デフォルト値: '~/figures')
+%　　　　to change the folder in which you want to store the figures created by
+%　　　　this program.
 %
-% [書式]
-%　　options = setWhiskerOptions(Name,value,...)
+% [Example]
+%   1. If you store the raw data set into "/somewhere/rawdata", please
+%   change Line 22 of main.m into 
+%　　　 options = setWhiskerOptions('DATA_DIR', '/somewhere/rawdata');
 %
-% [入力]
-%　　Name,Value引数のペアをコンマ区切りで指定する。
-%　　Nameは引数名で、Value は対応する値。
-%　　Nameで指定できる引数は下記の通り。
+%   2. If you store the raw data set into "/somewhere/rawdata" and save the
+%   files created by this program into "/somewhere/figures", please change
+%   Line 22 of main.m into 
+%　　　 options = setWhiskerOptions('DATA_DIR', '/somewhere/rawdata', ...
+%         'FIG_DIR', '/somewhere/figures');
 %
-%　　- 'DATA_DIR' (デフォルト値: '../data')
-%　　　　実験データが保存されているフォルダ名
-%
-%　　- 'WORK_DIR' (デフォルト値: '../work')
-%　　　　作業ファイルの保存先フォルダ名
-%
-%　　- 'FIG_DIR' (デフォルト値: '../figures')
-%　　　　作成した図の保存先フォルダ名
-%
-%　　- 'EXPORT_DIR' (デフォルト値: '../export')
-%　　　　解析データのエクスポート先フォルダ名
-%
-%　　- 'MaxTrials' (デフォルト値: 5000)
-%　　　　想定される1日あたりの最大トライアル数（単位: 回）
-%
-%　　- 'CUE_V' (デフォルト値: 5.0)
-%　　　　Cue, Reward提示時の電圧（単位: V）
-%
-%　　- 'LICK_TH' （デフォルト値: 0.1）
-%　　　　ピエゾ素子によるLicking判定の閾値（単位: V）
-%
-%　　- 'Fs' （デフォルト値: 200）
-%　　　　Whiskerデータのサンプリング周波数（単位: Hz）
-%
-%　　- 'Fs_V' （デフォルト値: 2000）
-%　　　　電圧データのサンプリング周波数（単位: Hz）
-%
-%　　- 'CUE_DUR' （デフォルト値: 2.2）
-%　　　　Go/No-Go Cueの提示時間（単位: 秒）
-%
-%　　- 'RWD_WIDTH' （デフォルト値: 1.0）
-%　　　　Reward Windowの時間長（単位: 秒）
-%
-%　　- 'MIN_ITI' （デフォルト値: 3.0）
-%　　　　最小のInter Trial Interval（単位: 秒）
-%
-%　　- 'PRE_WAIT_DUR' （デフォルト値: 2.0）
-%　　　　トライアル前最小待ち時間（単位: 秒）
-%
-%　　- 'LOAD_ORG_FILE' （デフォルト値: false）
-%　　　　元ファイルから実験データをロードする場合 = true
-%　　　　変換済みmatファイルから実験データをロードする場合 = false
-%
-% [出力]
-%   options: 各種オプションの設定値を格納した構造体（各配列は以下の要素を持つ）
-%
-% [使用例]
-%　　1. 解析対象データの保存されているフォルダ名を'../new_data'、
-%　　　　図の保存先フォルダ名を'../figs'に変更したい場合
-%　　　　>> options = setWhiskerOptions('DATA_DIR','../new_data', 'FIG_DIR','../figs')
 %=========================================================================
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,18 +48,11 @@ options.DATA_DIR = '~/rawdata';
 % 解析対象データに対応する鼻運動データの格納先を指定
 options.DATA_NOSE_DIR = strcat(options.DATA_DIR, '_nose');
 
-% D-primeデータの格納先を指定
-options.DPRIME_DIR = '~/dprime200820';
-
 % 作業ファイルの格納先を指定
-options.WORK_DIR = '~/hogehoge/processed_data';
+options.WORK_DIR = '~/processed_data';
 
 % 作成した図の保存先を指定
-options.FIG_DIR = '~/hogehoge/figures';
-
-% 解析データのエクスポート先を指定
-options.EXPORT_DIR = '../export200820';
-
+options.FIG_DIR = '~/figures';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 各実験パラメータのデフォルト設定
